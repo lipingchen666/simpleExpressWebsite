@@ -1,0 +1,985 @@
+<template id="contactFormTemplate">
+    <form id="SchemaForm_83" class="ui form" autocomplete="new-password">
+        <afdropdowninput class="required field">
+
+
+            <label>
+
+
+                Person
+
+
+            </label>
+
+
+            <div class="ui search selection dropdown" id="cool">
+                <input type="hidden" name="ZJ8NPcbieqQJb9Y8S" value="Male" data-schema-key="gender"
+                       autocomplete="new-password">
+
+
+                <input class="search" autocomplete="new-password" tabindex="0">
+
+
+                <div class="text">Liping Chen</div>
+
+
+                <i class="dropdown icon"></i>
+
+
+                <div class="menu" tabindex="-1">
+
+
+                    <div class="item active selected" data-value="Male">Liping Chen</div>
+
+
+                    <div class="item" data-value="Female">Janelle Johnson</div>
+
+
+                </div>
+            </div>
+        </afdropdowninput>
+        <h4 class="ui dividing status completed header">
+            Your Personal Info
+        </h4>
+        <div class="indent">
+            <div class="four fields">
+                <div data-field-name="first_name" class="required field">
+                    <label>
+                        First Name
+                    </label>
+                    <div class="ui input">
+                        <input type="text" name="sn5u6hmbBCpj5afkj" data-schema-key="first_name" class="text_input"
+                               tabindex="0" autocomplete="off" value="{{firstName}}">
+                    </div>
+                </div>
+                <div data-field-name="middle_name" class="field">
+                    <label>
+                        Middle Name
+                    </label>
+                    <div class="ui input">
+                        <input type="text" name="9EP27yGDB2hPtSfac" data-schema-key="middle_name" class="text_input"
+                               tabindex="0" autocomplete="off">
+                    </div>
+                </div>
+                <div data-field-name="last_name" class="required field">
+                    <label>
+                        Last Name
+                    </label>
+                    <div class="ui input">
+                        <input type="text" name="PtK2fQF3qeGghR6Yi" data-schema-key="last_name" class="text_input"
+                               tabindex="0" autocomplete="off">
+                    </div>
+                </div>
+
+
+                <div data-field-name="suffix" class="field">
+
+
+                    <label>
+
+
+                        Suffix
+
+
+                    </label>
+
+
+                    <div class="ui input">
+
+
+                        <input type="text" name="ZgTyh2iJmWByzGtGG" data-schema-key="suffix" class="text_input"
+                               tabindex="0" autocomplete="off">
+
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="three fields">
+
+
+                <afdropdowninput class="required field">
+
+
+                    <label>
+
+
+                        Gender
+
+
+                    </label>
+
+
+                    <div class="ui search selection dropdown" id="cool">
+                        <input type="hidden" name="ZJ8NPcbieqQJb9Y8S" value="Male" data-schema-key="gender"
+                               autocomplete="new-password">
+
+
+                        <input class="search" autocomplete="new-password" tabindex="0">
+
+
+                        <div class="text">Male</div>
+
+
+                        <i class="dropdown icon"></i>
+
+
+                        <div class="menu" tabindex="-1">
+
+
+                            <div class="item active selected" data-value="Male">Male</div>
+
+
+                            <div class="item" data-value="Female">Female</div>
+
+
+                        </div>
+                    </div>
+                </afdropdowninput>
+
+
+                <afdropdowninput class="required field">
+                    <label>
+                        Marital Stat
+                    </label>
+                    <div class="ui search selection dropdown">
+                        <input type="hidden" name="KbFQFPrHp6MgM7EH6" value="Single" data-schema-key="marital_status"
+                               autocomplete="new-password">
+                        <input class="search" autocomplete="new-password" tabindex="0">
+
+
+                        <div class="text">Single</div>
+
+
+                        <i class="dropdown icon"></i>
+
+
+                        <div class="menu" tabindex="-1">
+
+
+                            <div class="item" data-value="Married">Married</div>
+
+
+                            <div class="item" data-value="Unmarried">Unmarried</div>
+
+
+                            <div class="item active selected" data-value="Single">Single</div>
+
+
+                            <div class="item" data-value="Reg. Dom. Partnership">Reg. Dom. Partnership</div>
+
+
+                            <div class="item" data-value="Unknown">Unknown</div>
+
+
+                            <div class="item" data-value="Widow">Widow</div>
+
+
+                            <div class="item" data-value="Widower">Widower</div>
+
+
+                        </div>
+                    </div>
+                </afdropdowninput>
+
+
+                <afdropdowninput class="required field">
+
+
+                    <label>
+
+
+                        Citizenship Status
+
+
+                    </label>
+
+
+                    <div class="ui search selection dropdown">
+                        <input type="hidden" name="ievCSSeJGyFh4dFMC" value="U.S. Citizen" data-schema-key="citizenship"
+                               autocomplete="new-password">
+
+
+                        <input class="search" autocomplete="new-password" tabindex="0">
+
+
+                        <div class="text">U.S. Citizen</div>
+
+
+                        <i class="dropdown icon"></i>
+
+
+                        <div class="menu" tabindex="-1">
+
+
+                            <div class="item active selected" data-value="U.S. Citizen">U.S. Citizen</div>
+
+
+                            <div class="item" data-value="Resident Alien">Resident Alien</div>
+
+
+                            <div class="item" data-value="Non-Resident Alien">Non-Resident Alien</div>
+
+
+                            <div class="item" data-value="Other">Other</div>
+
+
+                        </div>
+                    </div>
+                </afdropdowninput>
+
+
+            </div>
+            <div class="three fields">
+
+
+                <div data-field-name="SSN" class="field">
+
+
+                    <label>
+
+
+                        SSN
+
+
+                        <span class="helpIcon"
+                              data-content="For security purposes, once submitted, this field's value is obscured when it is displayed.">
+            <i class="styled link help circle flat icon"></i>
+
+          </span>
+
+
+                    </label>
+
+
+                    <div class="ui sensitivePlaceholder input">
+
+
+                        <input type="text" inputmode="numeric" placeholder="***-**-**68" name="TbKa9YBWQriF368Sc"
+                               data-schema-key="SSN" class="text_input" tabindex="0" autocomplete="off">
+
+
+                    </div>
+                </div>
+
+
+                <div class="field checkbox">
+
+
+                    <label>
+
+
+                        Will you be giving power of attorney?
+
+
+                        <span class="helpIcon"
+                              data-content="A power of attorney gives another party (the Attorney-in-Fact) the power to sign documents on your behalf.">
+            <i class="styled link help circle flat icon"></i>
+
+          </span>
+
+
+                    </label>
+
+
+                    <input type="hidden" name="power_of_attorney.has" data-schema-key="power_of_attorney.has">
+                    <div class="ui compact buttons">
+
+
+                        <a class="ui button" data-value="true" tabindex="0">
+
+                            Yes
+                        </a>
+
+
+                        <a class="ui active button" tabindex="0">
+
+                            No
+                        </a>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <h4 class="ui dividing completed status header">
+            Your Contact Info
+        </h4>
+        <div class="indent">
+            <div class="two fields">
+
+
+                <div data-field-name="email" class="required field">
+
+
+                    <label>
+
+
+                        Email
+
+
+                    </label>
+
+
+                    <div class="ui input">
+
+
+                        <input type="text" name="dZjWWkqHF4z6KLRYX" data-schema-key="email" class="text_input"
+                               tabindex="0" autocomplete="off">
+
+
+                    </div>
+                </div>
+
+
+                <div data-field-name="cell_phone" class="required field">
+
+
+                    <label>
+
+
+                        Cell Phone
+
+
+                    </label>
+
+
+                    <div class="ui input">
+
+
+                        <input type="text" inputmode="tel" name="ELbqtpxYSb5ygLGSs" data-schema-key="cell_phone"
+                               class="text_input" tabindex="0" autocomplete="off">
+
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="three fields">
+
+
+                <div data-field-name="home_phone" class="field">
+
+
+                    <label>
+
+
+                        Home Phone
+
+
+                    </label>
+
+
+                    <div class="ui input">
+
+
+                        <input type="text" inputmode="tel" name="NTTXst5S3uPNYRDrr" data-schema-key="home_phone"
+                               class="text_input" tabindex="0" autocomplete="off">
+
+
+                    </div>
+                </div>
+
+
+                <div data-field-name="work_phone" class="field">
+
+
+                    <label>
+
+
+                        Work Phone
+
+
+                    </label>
+
+
+                    <div class="ui input">
+
+
+                        <input type="text" inputmode="tel" name="NtLBqpYQ6e75qsrzY" data-schema-key="work_phone"
+                               class="text_input" tabindex="0" autocomplete="off">
+
+
+                    </div>
+                </div>
+
+
+                <div data-field-name="fax" class="field">
+
+
+                    <label>
+
+
+                        Fax
+
+
+                    </label>
+
+
+                    <div class="ui input">
+
+
+                        <input type="text" inputmode="tel" name="c2tuuQWFsQRsnjgof" data-schema-key="fax"
+                               class="text_input" tabindex="0" autocomplete="off">
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <h4 class="ui dividing completed status header">
+            Current Address
+        </h4>
+        <div class="indent">
+            <p>Please enter your current address, where you will receive mail
+                <span class="underline">until this transaction is complete</span>.
+            </p>
+            <addresssearch>
+
+
+                <input type="hidden" placeholder="" value="38.9858558" name="Qnsg2BiZtEurCbDBW"
+                       data-schema-key="current_address.latitude" class="text_input" autocomplete="new-password">
+
+
+                <input type="hidden" placeholder="" value="-76.8662631" name="AE762hroWjdx5gEHG"
+                       data-schema-key="current_address.longitude" class="text_input" autocomplete="new-password">
+
+
+                <addressfields class="fields">
+
+
+                    <div class="address1 ten wide field">
+
+
+                        <label>
+
+
+                            <a class="customLabel link" tabindex="-1" href="#">International?</a>
+
+
+                            Address
+
+
+                        </label>
+
+
+                        <div class="ui fluid search">
+                            <div class="ui icon fluid input">
+
+
+                                <i class="cancel link icon" data-content="Clear Address"></i>
+
+
+                                <input class="prompt" type="text" autocomplete="new-password"
+                                       placeholder="Search address..." name="k7JRQpYhuoHpa5giQ"
+                                       data-schema-key="current_address.address_1">
+                            </div>
+                            <div class="results"></div>
+                        </div>
+                    </div>
+
+
+                    <div data-field-name="current_address.address_2" class="six wide field">
+
+
+                        <label>
+
+
+                            Apt, Suite, Etc.
+
+
+                        </label>
+
+
+                        <div class="ui input">
+
+
+                            <input type="text" name="jJ5WGSnk8zdcRARxv" data-schema-key="current_address.address_2"
+                                   class="text_input" tabindex="0" autocomplete="new-password">
+
+
+                        </div>
+                    </div>
+
+
+                </addressfields>
+                <div class="four fields">
+
+
+                    <div data-field-name="current_address.city" class="field">
+
+
+                        <label>
+
+
+                            City
+
+
+                        </label>
+
+
+                        <div class="ui input">
+
+
+                            <input type="text" name="xdsRSdGtMkQQp5c46" data-schema-key="current_address.city"
+                                   class="text_input" tabindex="0" autocomplete="new-password">
+
+
+                        </div>
+                    </div>
+
+
+                    <div data-field-name="current_address.county" class="field">
+
+
+                        <label>
+
+
+                            County
+
+
+                        </label>
+
+
+                        <div class="ui input">
+
+
+                            <input type="text" name="ZZaEf29dntRmYRiJZ" data-schema-key="current_address.county"
+                                   class="text_input" tabindex="0" autocomplete="new-password">
+
+
+                        </div>
+                    </div>
+
+
+                    <afdropdowninput class="field">
+
+
+                        <label>
+
+
+                            State
+
+
+                        </label>
+
+
+                        <div class="ui search selection dropdown">
+                            <input type="hidden" name="Zf8GsMYjEr5jygpDt" value="MD"
+                                   data-schema-key="current_address.state" autocomplete="new-password">
+
+
+                            <input class="search" autocomplete="new-password" tabindex="0">
+
+
+                            <div class="text">MD</div>
+
+
+                            <i class="cancel link icon"></i>
+
+
+                            <div class="menu" tabindex="-1">
+
+
+                                <div class="item" data-value="AK">AK</div>
+
+
+                                <div class="item" data-value="AL">AL</div>
+
+
+                                <div class="item" data-value="AR">AR</div>
+
+
+                                <div class="item" data-value="AZ">AZ</div>
+
+
+                                <div class="item" data-value="CA">CA</div>
+
+
+                                <div class="item" data-value="CO">CO</div>
+
+
+                                <div class="item" data-value="CT">CT</div>
+
+
+                                <div class="item" data-value="DC">DC</div>
+
+
+                                <div class="item" data-value="DE">DE</div>
+
+
+                                <div class="item" data-value="FL">FL</div>
+
+
+                                <div class="item" data-value="GA">GA</div>
+
+
+                                <div class="item" data-value="HI">HI</div>
+
+
+                                <div class="item" data-value="IA">IA</div>
+
+
+                                <div class="item" data-value="ID">ID</div>
+
+
+                                <div class="item" data-value="IL">IL</div>
+
+
+                                <div class="item" data-value="IN">IN</div>
+
+
+                                <div class="item" data-value="KS">KS</div>
+
+
+                                <div class="item" data-value="KY">KY</div>
+
+
+                                <div class="item" data-value="LA">LA</div>
+
+
+                                <div class="item" data-value="MA">MA</div>
+
+
+                                <div class="item active selected" data-value="MD">MD</div>
+
+
+                                <div class="item" data-value="ME">ME</div>
+
+
+                                <div class="item" data-value="MI">MI</div>
+
+
+                                <div class="item" data-value="MN">MN</div>
+
+
+                                <div class="item" data-value="MO">MO</div>
+
+
+                                <div class="item" data-value="MS">MS</div>
+
+
+                                <div class="item" data-value="MT">MT</div>
+
+
+                                <div class="item" data-value="NC">NC</div>
+
+
+                                <div class="item" data-value="ND">ND</div>
+
+
+                                <div class="item" data-value="NE">NE</div>
+
+
+                                <div class="item" data-value="NH">NH</div>
+
+
+                                <div class="item" data-value="NJ">NJ</div>
+
+
+                                <div class="item" data-value="NM">NM</div>
+
+
+                                <div class="item" data-value="NV">NV</div>
+
+
+                                <div class="item" data-value="NY">NY</div>
+
+
+                                <div class="item" data-value="OH">OH</div>
+
+
+                                <div class="item" data-value="OK">OK</div>
+
+
+                                <div class="item" data-value="OR">OR</div>
+
+
+                                <div class="item" data-value="PA">PA</div>
+
+
+                                <div class="item" data-value="RI">RI</div>
+
+
+                                <div class="item" data-value="SC">SC</div>
+
+
+                                <div class="item" data-value="SD">SD</div>
+
+
+                                <div class="item" data-value="TN">TN</div>
+
+
+                                <div class="item" data-value="TX">TX</div>
+
+
+                                <div class="item" data-value="UT">UT</div>
+
+
+                                <div class="item" data-value="VA">VA</div>
+
+
+                                <div class="item" data-value="VT">VT</div>
+
+
+                                <div class="item" data-value="WA">WA</div>
+
+
+                                <div class="item" data-value="WI">WI</div>
+
+
+                                <div class="item" data-value="WV">WV</div>
+
+
+                                <div class="item" data-value="WY">WY</div>
+
+
+                                <div class="item" data-value="VI">VI</div>
+
+
+                            </div>
+                        </div>
+                    </afdropdowninput>
+
+
+                    <div data-field-name="current_address.zipcode" class="field">
+
+
+                        <label>
+
+
+                            Zipcode
+
+
+                        </label>
+
+
+                        <div class="ui input">
+
+
+                            <input type="text" inputmode="numeric" name="BcKqhpxBoX3ADDHjJ"
+                                   data-schema-key="current_address.zipcode" class="text_input" tabindex="0"
+                                   autocomplete="new-password">
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </addresssearch>
+        </div>
+
+        <h4 class="ui dividing status completed header">
+            Forwarding Address
+        </h4>
+        <div class="indent">
+            <p>Will you receive mail at a different location <span
+                    class="underline">after this transaction is complete</span>?</p>
+
+
+            <div class="field checkbox">
+
+                <input type="hidden" name="forwarding_address_same_as_current"
+                       data-schema-key="forwarding_address_same_as_current" value="true">
+                <div class="ui compact buttons">
+
+
+                    <a class="ui button" tabindex="0">
+
+                        Yes
+                    </a>
+
+
+                    <a class="ui active button" data-value="true" tabindex="0">
+
+                        No
+                    </a>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <h4 class="ui dividing status completed header">
+            Additional Questions
+        </h4>
+        <div class="indent">
+            <div class="ui equal width stackable grid">
+
+
+                <div class="row">
+                    <div class="column">
+                        <p>Will the property be your primary residence?</p>
+                    </div>
+                    <div class="column">
+
+
+                        <div class="field checkbox">
+
+                            <input type="hidden" name="borrower_primary_residence"
+                                   data-schema-key="borrower_primary_residence" value="true">
+                            <div class="ui compact buttons">
+
+
+                                <a class="ui active button" data-value="true" tabindex="0">
+
+                                    Yes
+                                </a>
+
+
+                                <a class="ui button" tabindex="0">
+
+                                    No
+                                </a>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="column">
+                        <p>Is this your first time buying a home?</p>
+                    </div>
+                    <div class="column">
+
+
+                        <div class="field checkbox">
+
+                            <input type="hidden" name="borrower_first_time" data-schema-key="borrower_first_time"
+                                   value="true">
+                            <div class="ui compact buttons">
+
+
+                                <a class="ui active button" data-value="true" tabindex="0">
+
+                                    Yes
+                                </a>
+
+
+                                <a class="ui button" tabindex="0">
+
+                                    No
+                                </a>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="column">
+                        <p>Is this your first time buying a home in MD?</p>
+                    </div>
+                    <div class="column">
+
+
+                        <div class="field checkbox">
+
+                            <input type="hidden" name="borrower_first_time_in_md"
+                                   data-schema-key="borrower_first_time_in_md" value="true">
+                            <div class="ui compact buttons">
+
+
+                                <a class="ui active button" data-value="true" tabindex="0">
+
+                                    Yes
+                                </a>
+
+
+                                <a class="ui button" tabindex="0">
+
+                                    No
+                                </a>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="column">
+                        <p>What is your date of birth?</p>
+                    </div>
+                    <div class="column">
+
+
+                        <div data-field-name="borrower_date_of_birth" class="field">
+
+
+                            <div class="ui icon input">
+
+
+                                <i class="calendar icon"></i>
+
+
+                                <input type="text" name="kxtAeSkRAquYHRzcg" data-schema-key="borrower_date_of_birth" id="birth-date-picker"
+                                       autocomplete="new-password" inputmode="numeric">
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <h4 class="ui dividing header">
+
+            Update Information
+
+        </h4>
+        <div class="indent">
+
+            <div class="ui secondary segment">
+
+                <p>
+                    You're all set to resubmit.
+                    Please verify the information above appears correctly before submitting this data.
+                </p>
+                <submitrequest class="ui huge primary button">
+
+                    Submit Revision
+
+                </submitrequest>
+
+
+                <cancelresubmission class="ui huge button cancel-button">
+                    Cancel
+                </cancelresubmission>
+
+            </div>
+        </div>
+
+
+    </form>
+</template>
