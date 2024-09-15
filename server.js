@@ -19,6 +19,9 @@ app.set('views', path.join(__dirname, 'views'));
 // Serve static files like CSS from the public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/', (req, res) => {
+    res.render('overview');
+});
 // Home route
 app.get('/orders/RLnFFgXcgk3mY6Le3/overview', (req, res) => {
     res.render('overview');
