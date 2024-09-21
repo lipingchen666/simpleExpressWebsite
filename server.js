@@ -100,23 +100,50 @@ app.get('/api/user', (req, res) => {
 app.get('/api/tasks', (req, res) => {
     const tasks = [
         {
-            status: 'sent',
-            name: 'Select Your Title Vesting',
-            type: 'vesting'
+            completed: false,
+            dateId: 'uploadPhotoID',
+            link: '/orders/RLnFFgXcgk3mY6Le3/tasks/27iCDMN9tWARhPPMf',
+            imageSrc: 'https://connect.qualia.com/images/artwork/document.png',
+            timeToComplete: 3,
+            title: 'Upload Photo',
+            description: 'Your settlement agency has asked you to upload a copy of your government-issued photo ID for your closing.'
         },
         {
-            status: 'sent',
-            type: 'uploadID'
+            completed: true,
+            dateId: 'lenderContactInfo',
+            link: "/orders/RLnFFgXcgk3mY6Le3/tasks/LzvSsZ6GDh9bg6i5M",
+            imageSrc: 'https://connect.qualia.com/images/artwork/lending.png',
+            timeToComplete: 3,
+            title: 'Confirm Lender Contact Information',
+            description: 'Your settlement agency has asked you to provide contact information for your lender.'
         },
         {
-            status: 'sent',
-            type: 'personal Info'
+            completed: false,
+            dateId: 'personalInfo',
+            link: "/orders/RLnFFgXcgk3mY6Le3/tasks/FEwEygDD7NDJD59x5",
+            imageSrc: 'https://connect.qualia.com/images/artwork/avatar1.png',
+            timeToComplete: 15,
+            title: 'Confirm Your Personal Information',
+            description: 'Your settlement agency has asked you to confirm basic personal details for your closing.'
         },
         {
-            status: 'completed',
-            type: 'lenderInfo'
-        }
+            completed: false,
+            dateId: 'vestingInfo',
+            link: "/orders/RLnFFgXcgk3mY6Le3/tasks/H9C5MgYWefYjyJ8dD",
+            imageSrc: 'https://connect.qualia.com/images/artwork/deed.png',
+            timeToComplete: 10,
+            title: 'Select Your Title Vesting',
+            description: ' Your settlement agency has asked you to select the way you will hold title to your property.'
+        },
     ]
+
+    res.json(tasks);
+})
+
+app.get('/api/vesting', (req, res) => {
+    const vesting = {
+
+    }
 
     res.json(tasks);
 })

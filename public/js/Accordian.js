@@ -1,103 +1,249 @@
-function createAccordion() {
-    // Create the main container div
-    const columnDiv = document.createElement('div');
-    columnDiv.className = 'column';
+const Accordion = ({
+    type='tenants by the entirety',
+    checked,
+    description="Only married couples may hold title in this manner. Each spouse holds an undivided interest in the property. Should one spouse predecease the other, the property transfers to the surviving spouse.",
+    callback,
+                   }) => {
+    function createColumnNode() {
+        // Create the outer div with class "column"
+        const columnDiv = document.createElement('div');
+        columnDiv.className = 'column';
 
-    // Create the field container
-    const fieldDiv = document.createElement('div');
-    fieldDiv.setAttribute('data-field-name', 'tenants in common');
-    fieldDiv.className = 'field';
+        // Create the inner div with data-field-name and class "field"
+        const fieldDiv = document.createElement('div');
+        fieldDiv.setAttribute('data-field-name', type);
+        fieldDiv.className = 'field';
 
-    // Create the checkbox container
-    const checkboxDiv = document.createElement('div');
-    checkboxDiv.className = 'ui toggle checkbox checked';
+        // Create the inner div with class "ui toggle checkbox checked"
+        const toggleCheckboxDiv = document.createElement('div');
+        toggleCheckboxDiv.className = `ui toggle checkbox ${checked ? 'checked' : ''}`;
 
-    // Create the hidden checkbox input
-    const checkboxInput = document.createElement('input');
-    checkboxInput.type = 'checkbox';
-    checkboxInput.setAttribute('data-schema-key', 'tenants in common');
-    checkboxInput.name = 'tenants in common';
-    checkboxInput.tabIndex = 0;
-    checkboxInput.className = 'hidden';
+        // Create the input element
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.setAttribute('data-schema-key', type);
+        input.name = type;
+        input.tabIndex = 0;
+        input.className = 'hidden';
+        input.checked = !!checked;
+
+        fieldDiv.addEventListener('click', () => {
+            if (callback && typeof callback === 'function') {
+                console.log("here");
+                callback(); // Pass the checked state to the callback
+            }
+        });
+
+        // Create the label element
+        const label = document.createElement('label');
+        label.textContent = type;
+        // Append input and label to the checkbox div
+        toggleCheckboxDiv.appendChild(input);
+        toggleCheckboxDiv.appendChild(label);
+
+        // Append the checkbox div to the field div
+        fieldDiv.appendChild(toggleCheckboxDiv);
+
+        // Create the vestinginfo element
+        const vestingInfo = document.createElement('vestinginfo');
+        vestingInfo.className = `ui message ${checked ? "positive" : "" }`;
+        vestingInfo.textContent = description;
+
+        // Append the field div and vestinginfo to the column div
+        columnDiv.appendChild(fieldDiv);
+        columnDiv.appendChild(vestingInfo);
+
+        if (type === "tenants in common" && checked) {
+            // const percentageNode = createBorrowerPercentageNode('Liping Chen', 'ownership-percentage', 'ownership-percentage');
+            const percentageNode = createBorrowersPercentageNode({ name: 'Liping Chen', inputName: "liping"}, { name: 'Janelle Lynn Johnson', inputName: "janelle" });
+            columnDiv.appendChild(percentageNode);
+        }
+
+        const rowDiv = document.createElement('div');
+        rowDiv.className = 'row';
+        rowDiv.appendChild(columnDiv)
+
+        // Return the constructed column div
+        return rowDiv;
+    }
+
+    return createColumnNode();
+}
+
+const createBorrowerPercentageNode = (borrowerName, inputName, dataSchemaKey) => {
+    // Create the main container
+    const container = document.createElement('div');
+    container.className = 'ui equal width vertically divided list';
+
+    // Create the item div
+    const item = document.createElement('div');
+    item.className = 'ui item';
+
+    // Create the fields div
+    const fields = document.createElement('div');
+    fields.className = 'three fields';
+
+    // Create the required field div
+    const requiredField = document.createElement('div');
+    requiredField.className = 'required field';
+    requiredField.setAttribute('data-field-name', 'borrowers.0.percentage');
 
     // Create the label
     const label = document.createElement('label');
-    label.textContent = 'Tenants In Common';
-
-    // Append input and label to the checkbox container
-    checkboxDiv.appendChild(checkboxInput);
-    checkboxDiv.appendChild(label);
-
-    // Append checkbox container to the field container
-    fieldDiv.appendChild(checkboxDiv);
-
-    // Create the vestinginfo element
-    const vestingInfo = document.createElement('vestinginfo');
-    vestingInfo.className = 'ui positive message';
-    vestingInfo.textContent = 'Each owner holds his/her own interest. In the event an owner passes away, his/her interest passes to his/her heirs.';
-
-    // Create the ownership percentage header
-    const header = document.createElement('h4');
-    header.className = 'ui header percentage';
-    header.textContent = 'Ownership Percentage';
-
-    // Create the list container
-    const listDiv = document.createElement('div');
-    listDiv.className = 'ui equal width vertically divided list';
-
-    // Create the item container
-    const itemDiv = document.createElement('div');
-    itemDiv.className = 'ui item';
-
-    // Create the three fields container
-    const fieldsDiv = document.createElement('div');
-    fieldsDiv.className = 'three fields';
-
-    // Create the borrower percentage field
-    const borrowerFieldDiv = document.createElement('div');
-    borrowerFieldDiv.setAttribute('data-field-name', 'borrowers.0.percentage');
-    borrowerFieldDiv.className = 'required field';
-
-    // Create the borrower label
-    const borrowerLabel = document.createElement('label');
-    borrowerLabel.textContent = 'Liping Chen';
+    label.textContent = borrowerName;
 
     // Create the input container
-    const inputDiv = document.createElement('div');
-    inputDiv.className = 'ui input';
+    const inputContainer = document.createElement('div');
+    inputContainer.className = 'ui input';
 
-    // Create the text input
-    const textInput = document.createElement('input');
-    textInput.type = 'text';
-    textInput.setAttribute('inputmode', 'decimal');
-    textInput.name = '4mnvFFQjf8AvML5kM';
-    textInput.setAttribute('data-schema-key', 'borrowers.0.percentage');
-    textInput.className = 'text_input';
-    textInput.tabIndex = 0;
-    textInput.autocomplete = 'off';
+    // Create the input element
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.inputMode = 'decimal';
+    input.name = inputName;
+    input.setAttribute('data-schema-key', dataSchemaKey);
+    input.className = 'text_input';
+    input.tabIndex = '0';
+    input.autocomplete = 'off';
+    input.value = '50%';
 
-    // Append input to the input container
-    inputDiv.appendChild(textInput);
+    // Assemble the elements
+    inputContainer.appendChild(input);
+    requiredField.appendChild(label);
+    requiredField.appendChild(inputContainer);
+    fields.appendChild(requiredField);
+    item.appendChild(fields);
+    container.appendChild(item);
 
-    // Append label and input container to the borrower field
-    borrowerFieldDiv.appendChild(borrowerLabel);
-    borrowerFieldDiv.appendChild(inputDiv);
+    return container;
+}
 
-    // Append borrower field to the three fields container
-    fieldsDiv.appendChild(borrowerFieldDiv);
+function createBorrowersPercentageNode(borrower1, borrower2) {
+    // Create the main container
+    const container = document.createElement('div');
+    container.className = 'ui equal width vertically divided list';
 
-    // Append three fields container to the item
-    itemDiv.appendChild(fieldsDiv);
+    // Function to create a borrower field
+    function createBorrowerField(borrower, index) {
+        const item = document.createElement('div');
+        item.className = 'ui item';
 
-    // Append item to the list container
-    listDiv.appendChild(itemDiv);
+        const fields = document.createElement('div');
+        fields.className = 'three fields';
 
-    // Append elements to the main container
-    columnDiv.appendChild(fieldDiv);
-    columnDiv.appendChild(vestingInfo);
-    columnDiv.appendChild(header);
-    columnDiv.appendChild(listDiv);
+        const requiredField = document.createElement('div');
+        requiredField.className = 'required field';
+        requiredField.setAttribute('data-field-name', `borrowers.${index}.percentage`);
 
-    // Return the constructed Node
-    return columnDiv;
+        const label = document.createElement('label');
+        label.textContent = borrower.name;
+
+        const inputContainer = document.createElement('div');
+        inputContainer.className = 'ui input';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.inputMode = 'decimal';
+        input.name = borrower.inputName;
+        input.setAttribute('data-schema-key', `borrowers.${index}.percentage`);
+        input.className = 'text_input';
+        input.tabIndex = '0';
+        input.autocomplete = 'off';
+        input.value = '50%';
+        input.disabled = true;
+
+        inputContainer.appendChild(input);
+        requiredField.appendChild(label);
+        requiredField.appendChild(inputContainer);
+        fields.appendChild(requiredField);
+        item.appendChild(fields);
+
+        return item;
+    }
+
+    // Create and append fields for both borrowers
+    container.appendChild(createBorrowerField(borrower1, 0));
+    container.appendChild(createBorrowerField(borrower2, 1));
+
+    return container;
+}
+
+const createLiveValue = (initialValue) => {
+    let value = initialValue;
+    let listeners = [];
+
+    const getValue = () => value;
+
+    const setValue = (nextValue) => {
+        value = nextValue;
+
+        for (const listener of listeners) {
+            listener(value);
+        }
+    };
+
+    const addListener = (listener) => {
+        listeners.push(listener);
+    };
+
+    const removeListener = (listener) => {
+        listeners = listeners.filter(fn => fn !== listener);
+    };
+
+    return [
+        getValue,
+        setValue,
+        addListener,
+        removeListener
+    ];
+};
+
+export const renderAccordions = (containerClass) => {
+    const [selectedVesting, setSelectedVesting, addVestingStatusListener, removeVestingStatusListener] = createLiveValue(0);
+    const vestingOptions = [
+        {
+            type: 'Sole Owner',
+            checked: false,
+            description: "One party owns the property."
+        },
+        {
+            type: 'tenants in common',
+            checked: false,
+            description: "Each owner holds his/her own interest. In the event an owner passes away, his/her interest passes to his/her heirs."
+        },
+        {
+            type: 'Joint tenants',
+            checked: false,
+            description: "Each owner holds an undivided interest in the entire property. In the event an owner passes away, his/her interest transfers to the surviving owner(s)."
+
+        },
+        {
+            type: 'tenants by the entirety',
+            checked: true,
+            description: "Only married couples may hold title in this manner. Each spouse holds an undivided interest in the property. Should one spouse predecease the other, the property transfers to the surviving spouse."
+        },
+    ]
+
+    vestingOptions.forEach((vestingOption, index) => {
+        const accordion = Accordion(
+            {
+            ...vestingOption, callback: () => {  setSelectedVesting(index) }
+        })
+
+        let currentAccordion = accordion;
+
+        addVestingStatusListener((selectedIndex) => {
+            const newCheckedValue = selectedIndex === index ? !currentAccordion.querySelector('input[type="checkbox"]').checked : false
+
+            const newAccordion = Accordion({
+                ...vestingOption,
+                checked: newCheckedValue,
+                callback: () => {  setSelectedVesting(index) }
+            })
+            currentAccordion.replaceWith(newAccordion);
+            currentAccordion = newAccordion;
+        })
+
+        document.querySelector(containerClass).appendChild(accordion);
+    })
 }

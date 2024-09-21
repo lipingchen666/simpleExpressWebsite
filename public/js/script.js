@@ -1,4 +1,7 @@
 import { CompletedFormComponent } from "./CompletedFormComponent.js";
+import {creatTaskComponent, taskComponent} from "./Task.js";
+import { ProgressBar } from "./ProgressBar.js";
+import { renderAccordions} from "./Accordian.js";
 
 // const wrapper = document.getElementById('personalInformationTask')
 //
@@ -16,6 +19,18 @@ async function fetchUserData() {
         return data;
     } catch (error) {
         console.error('Error fetching user data:', error);
+    }
+}
+
+async function fetchTaskData() {
+    try {
+        const response = await fetch('/api/tasks');
+        const data = await response.json();
+        console.log('Task Data:', data);
+        // You can use the data to update the DOM or perform other actions
+        return data;
+    } catch (error) {
+        console.error('Error fetching task data:', error);
     }
 }
 
@@ -113,7 +128,41 @@ async function init() {
             labelIdle: 'Drag & Drop your SSN card back side or <span class="filepond--label-action">Browse</span>',
         });
     }
+    if (document.querySelector(".ui.very.relaxed.divided.items")) {
+        const tasks = await fetchTaskData();
+        tasks.forEach(task => {
+            const taskItem = creatTaskComponent({
+                dataId: task.dataId,
+                link: task.link,
+                imageSrc: task.imageSrc,
+                title: task.title,
+                timeToComplete: task.timeToComplete,
+                description: task.description,
+                completed: task.completed,
+            })
+            document.querySelector(".ui.very.relaxed.divided.items").appendChild(taskItem);
+        });
+        // const taskItem = taskComponent({});
+        // document.querySelector(".ui.very.relaxed.divided.items").appendChild(taskItem);
+        if (document.querySelector('.progress-container')) {
+            const numCompleted = tasks.reduce((acc, task) => {
+                const numToAdd = task.completed ? 1 : 0;
+                return acc + numToAdd;
+            }, 0)
+
+            const progressBar = ProgressBar({
+                percent: (numCompleted / tasks.length) * 100,
+                numCompleted,
+                numTotal: tasks.length,
+            })
+
+            document.querySelector('.progress-container').appendChild( progressBar)
+        }
+    }
+
+    renderAccordions(".ui.equal.width.vertically.divided.grid.vesting");
 }
 // Call the async function
 init();
+
 
