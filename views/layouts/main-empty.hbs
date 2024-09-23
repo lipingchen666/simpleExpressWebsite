@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Qualia Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport"
+          content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+
+    <!-- iPhone Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-touch-icon-60x60.png">
+    <!--    <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-touch-icon-72x72.png">-->
+    <!--    <link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-touch-icon-76x76.png">-->
+
+    <!--    <link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-touch-icon-114x114.png">-->
+    <!--    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120x120.png">-->
+    <!--    <link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-touch-icon-144x144.png">-->
+    <!--    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152x152.png">-->
+    <!--    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180x180.png">-->
+
+    <!-- Safari -->
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#5bbad5">
+
+    <!-- Windows -->
+    <meta name="msapplication-TileColor" content="#1e2527">
+    <meta name="msapplication-TileImage" content="app/mstile-144x144.png">
+    <meta name="theme-color" content="#FFFFFF">
+
+    <!-- IE Should Not Use Compatibility Mode -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="utf-8">
+
+    <!--    <script async="" crossorigin="anonymous" src="https://edge.fullstory.com/s/fs.js"></script><script type="text/javascript" async="" src="https://cdn.amplitude.com/libs/amplitude-5.2.2-min.gz.js"></script><script type="text/javascript" src="https://cdn.segment.com/next-integrations/integrations/vendor/commons.a61d7bea37d2de5d4b69.js.gz" async="" status="loaded"></script><script type="text/javascript" src="https://cdn.segment.com/next-integrations/integrations/amplitude/3.3.3/amplitude.dynamic.js.gz" async="" status="loaded"></script><script type="text/javascript" async="" src="https://cdn.segment.com/analytics.js/v1/h8CuV7kOemNvEHq8HveZVCb2YHivg4a7/analytics.min.js"></script><script type="text/javascript" async="" src="https://maps.googleapis.com/maps/api/js?language=en&amp;libraries=places,visualization&amp;key=AIzaSyCeew_rZ5CRAAyXdJkkKvz50SagopwWAKo&amp;callback=GoogleMaps.callback"></script><script type="text/javascript" src="/startup.js"></script>-->
+    <!--    <script type="text/javascript" src="/meteor_runtime_config.js"></script>-->
+
+
+    <!--    <script defer="" type="module" src="/RLNYBHRV.js"></script>-->
+
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+        }
+
+        body.loading {
+            background-color: #FFFFFF;
+        }
+
+        loadingPage {
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background-color: #FFFFFF;
+            z-index: 1000;
+        }
+
+        body.whitelabel loadingPage pageLogo,
+        body.whitelabel loadingPage mobileLogo {
+            visibility: hidden !important;
+        }
+
+        body.whitelabel loadingPage pageHeader {
+            display: none !important;
+        }
+
+        body.whitelabel loadingPage h3 {
+            visibility: hidden !important;
+        }
+
+        body loadingPage app#login {
+            display: none !important;
+        }
+
+        body loadingPage app#login loginPlaceholder {
+            position: relative;
+            height: 306px;
+        }
+
+        body loadingPage app#login loginPlaceholder .ui.loader {
+            margin: 2rem auto 0;
+        }
+
+        body.logged-out loadingPage app {
+            display: none !important;
+        }
+
+        body.logged-out loadingPage app#login {
+            display: flex !important;
+        }
+
+    </style>
+
+    <script
+            async
+            crossorigin="anonymous"
+            data-clerk-publishable-key="pk_test_d2FudGVkLXBhcnJvdC0yLmNsZXJrLmFjY291bnRzLmRldiQ"
+            src="https://wanted-parrot-2.clerk.accounts.dev/npm/@clerk/clerk-js@4/dist/clerk.browser.js"
+            type="text/javascript">
+    </script>
+
+    <link rel="stylesheet" type="text/css" class="__meteor-css__" href="/G3HONPQU.css">
+
+    <link rel="stylesheet" type="text/css" class="__meteor-css__" href="/RHHL4UZC.css">
+
+    <link rel="stylesheet" type="text/css" class="__meteor-css__" href="/LLVA7OM7.css">
+
+    <link rel="stylesheet" type="text/css" class="__meteor-css__" href="/__client-3TBYNNTA.css">
+
+    <link rel="stylesheet" type="text/css" class="__meteor-css__" href="/docs-NW52XMM4.css">
+
+    <link rel="stylesheet" type="text/css" class="__meteor-css__" href="/styles.css">
+    {{#if script}}
+        <script type="module" src="/js/{{script}}"></script>
+    {{/if}}
+</head>
+<body>
+{{> header}}
+<div class="flex items-center justify-center h-screen">
+    {{{body}}}
+</div>
+</body>
+</html>

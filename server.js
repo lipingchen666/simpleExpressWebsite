@@ -1,10 +1,14 @@
+require('dotenv').config();
+
 const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const {ClerkExpressWithAuth, ClerkExpressRequireAuth} = require("@clerk/clerk-sdk-node");
 
 const app = express();
 
-
+console.log("secret", process.env.CLERK_SECRET_KEY);
+console.log("secret", process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
 
 // Set up Handlebars as the view engine
 app.engine('hbs', exphbs.engine({
@@ -19,34 +23,81 @@ app.set('views', path.join(__dirname, 'views'));
 // Serve static files like CSS from the public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
+app.get('/',
+    ClerkExpressWithAuth({
+        // Add options here
+        // See the Middleware options section for more details
+    }),
+    (req, res) => {
+    console.log("auth", req.auth.userId);
+    if (!req.auth.userId) {
+        res.redirect('/auth/login');
+        // res.redirect('https://wanted-parrot-2.accounts.dev/sign-in');
+        return;
+    }
     res.render('overview');
 });
 // Home route
 app.get('/orders/RLnFFgXcgk3mY6Le3/overview', (req, res) => {
-    res.render('overview');
+    res.render('overview', { script: 'overview.js' });
 });
 
-app.get('/orders/RLnFFgXcgk3mY6Le3/tasks/FEwEygDD7NDJD59x5', (req, res) => {
-    const user = [{
-        firstName: 'Liping',
-        lastName: 'Chen',
-        email: 'flamechen123@gmail.com',
-    }]
-    res.render('personalInfo');
+app.get('/orders/RLnFFgXcgk3mY6Le3/tasks/FEwEygDD7NDJD59x5',
+    ClerkExpressWithAuth({
+        // Add options here
+        // See the Middleware options section for more details
+    }),
+    (req, res) => {
+        if (!req.auth.userId) {
+            res.redirect('/auth/login');
+            return;
+        }
+
+        res.render('personalInfo', { script: 'personalInfo.js' });
 });
 
-app.get('/orders/RLnFFgXcgk3mY6Le3/documents', (req, res) => {
-    res.render('documents');
+app.get('/orders/RLnFFgXcgk3mY6Le3/documents',
+    ClerkExpressWithAuth({
+    // Add options here
+    // See the Middleware options section for more details
+    }),
+    (req, res) => {
+        if (!req.auth.userId) {
+            res.redirect('/auth/login');
+            return;
+        }
+        res.render('documents', { script: "document.js" });
 });
 
-app.get('/orders/RLnFFgXcgk3mY6Le3/tasks/', (req, res) => {
-    res.render('tasks');
+app.get('/orders/RLnFFgXcgk3mY6Le3/tasks/',
+    ClerkExpressWithAuth({
+    // Add options here
+    // See the Middleware options section for more details
+    }),
+    (req, res) => {
+        if (!req.auth.userId) {
+            res.redirect('/auth/login');
+            return;
+        }
+        res.render('tasks', { script: "tasks.js" });
 })
 
-app.get('/orders/RLnFFgXcgk3mY6Le3/tasks/H9C5MgYWefYjyJ8dD', (req, res) => {
-    res.render('vesting');
+app.get('/orders/RLnFFgXcgk3mY6Le3/tasks/H9C5MgYWefYjyJ8dD',
+    ClerkExpressWithAuth({
+    // Add options here
+    // See the Middleware options section for more details
+    }),
+    (req, res) => {
+        if (!req.auth.userId) {
+            res.redirect('/auth/login');
+            return;
+        }
+        res.render('vesting', { script: "vesting.js" });
 });
+
+app.get('/auth/login', (req, res) => {
+    res.render('login', { script: 'login.js', layout: 'main-empty' });
+})
 
 
 //backend api
