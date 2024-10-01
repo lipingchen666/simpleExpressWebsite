@@ -67,3 +67,12 @@
 /*}*/
 
 
+.my-confirm-button {
+    background-color: #28a745 !important; /* Bootstrap green */
+    color: white !important;
+}
+
+/* You can also adjust hover or focus states if needed */
+.my-confirm-button:hover {
+    background-color: #218838 !important; /* Darker green */
+}

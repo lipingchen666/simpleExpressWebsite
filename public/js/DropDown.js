@@ -44,7 +44,9 @@ const DropDown = (options, selectedValue, onSelect, additionalClass='', name='')
     searchInput.classList.add('search');
     searchInput.setAttribute('autocomplete', 'new-password');
     searchInput.setAttribute('tabindex', '0');
+    // searchInput.value = name + '_search';
     dropdown.appendChild(searchInput);
+    // searchInput.value = selectedValue;
 
     // Create the text value div
     const textValue = document.createElement('div');
@@ -97,6 +99,7 @@ const DropDown = (options, selectedValue, onSelect, additionalClass='', name='')
 
             // Update the hidden input and text value
             hiddenInput.value = value;
+            // searchInput.value = value;
             textValue.textContent = text;
 
             // Update the selected item

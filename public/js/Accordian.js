@@ -198,28 +198,28 @@ const createLiveValue = (initialValue) => {
     ];
 };
 
-export const renderAccordions = (containerClass) => {
+export const renderAccordions = (containerClass, selectedVestingInitial='Solo Owner') => {
     const [selectedVesting, setSelectedVesting, addVestingStatusListener, removeVestingStatusListener] = createLiveValue(0);
     const vestingOptions = [
         {
             type: 'Sole Owner',
-            checked: false,
+            checked: selectedVestingInitial === 'Solo Owner',
             description: "One party owns the property."
         },
         {
             type: 'tenants in common',
-            checked: false,
+            checked: selectedVestingInitial === 'tenants in common',
             description: "Each owner holds his/her own interest. In the event an owner passes away, his/her interest passes to his/her heirs."
         },
         {
             type: 'Joint tenants',
-            checked: false,
+            checked: selectedVestingInitial === 'Joint tenants',
             description: "Each owner holds an undivided interest in the entire property. In the event an owner passes away, his/her interest transfers to the surviving owner(s)."
 
         },
         {
             type: 'tenants by the entirety',
-            checked: true,
+            checked: selectedVestingInitial === 'tenants by the entirety',
             description: "Only married couples may hold title in this manner. Each spouse holds an undivided interest in the property. Should one spouse predecease the other, the property transfers to the surviving spouse."
         },
     ]

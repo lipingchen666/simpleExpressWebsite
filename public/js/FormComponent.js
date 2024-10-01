@@ -1,6 +1,7 @@
 import { CompletedFormComponent } from "./CompletedFormComponent.js";
 import DropDown from "./DropDown.js";
 import Checkbox from "./Checkbox.js";
+import {updateTaskById, updateUserData} from "./common.js";
 
 const ComponentHtml = `
 <form id="okay" class="ui form" autocomplete="new-password">
@@ -347,7 +348,7 @@ const ComponentHtml = `
                     <div class="ui input">
 
 
-                        <input type="text" inputmode="tel" name="ELbqtpxYSb5ygLGSs" data-schema-key="cellPhone"
+                        <input type="text" inputmode="tel" name="cellPhone" data-schema-key="cellPhone"
                                class="text_input" tabindex="0" autocomplete="off">
 
 
@@ -1119,6 +1120,9 @@ const fillFormInputs = (user, form) => {
     if (user && form) {
         const inputs = form.querySelectorAll('input[data-schema-key]');
         inputs.forEach(input => {
+            if (input.name === 'user') {
+                return;
+            }
             const schemaKey = input.dataset.schemaKey;
             if (user[schemaKey]) {
                 input.value = user[schemaKey];
@@ -1156,7 +1160,7 @@ export const CreateDropDownFromUsers = (users, container, onSelect) => {
         }
     });
 
-    const dropDownNode = DropDown(options, '2', onSelect, 'user', 'user');
+    const dropDownNode = DropDown(options, options[1].value, onSelect, 'user', 'user');
 
     container.querySelector('.ui.search.selection.dropdown.users').replaceWith(dropDownNode);
 }
@@ -1205,6 +1209,14 @@ export const CreateDropDownForMaritalStatus = (container, user) => {
             text: 'Widowed',
             value: 'widowed'
         },
+        {
+            text: 'Widower',
+            value: 'widower'
+        },
+        {
+            text: 'Domestic Partnership',
+            value: 'domestic_partnership'
+        }
         // {
         //     text: '- Please Enter -',
         //     value: ''
@@ -1267,23 +1279,25 @@ export const CreateCheckBoxForFirstTimeBuyerMd = (container, user) => {
 }
 
 export const hookUpFormSubmit = (form) => {
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        console.log('Form submitted!', e.target);
-        const firstName = e.target.elements["firstName"].value;
-        const middleName = e.target.elements["middleName"].value;
-        const lastName = e.target.elements["lastName"].value;
-        const suffix = e.target.elements["suffix"].value;
-        const gender = e.target.elements["gender"].value;
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            console.log('Form submitted!', e.target);
+            const userId = e.target.elements["user"].value;
+            const firstName = e.target.elements["firstName"].value;
+            const middleName = e.target.elements["middleName"].value;
+            const lastName = e.target.elements["lastName"].value;
+            const suffix = e.target.elements["suffix"].value;
+            const gender = e.target.elements["gender"].value;
 
-        const email = e.target.elements["email"].value;
-        const maritalStatus = e.target.elements["maritalStatus"].value;
-        const citizenshipStatus = e.target.elements["citizenshipStatus"].value;
+            const email = e.target.elements["email"].value;
+            const maritalStatus = e.target.elements["maritalStatus"].value;
+            const citizenshipStatus = e.target.elements["citizenshipStatus"].value;
+            const cellPhone = e.target.elements["cellPhone"].value;
 
-        const errors = [];
-        if (validator.isEmpty(firstName)) {
-            errors.push("First Name is required");
-        }
+            const errors = [];
+            if (validator.isEmpty(firstName)) {
+                errors.push("First Name is required");
+            }
 
         if(validator.isEmpty(lastName)) {
             errors.push("Last Name is required");
@@ -1293,6 +1307,53 @@ export const hookUpFormSubmit = (form) => {
             errors.push("Please enter a valid email");
         }
 
+        if (validator.isEmpty(maritalStatus)) {
+            errors.push("Please select you marital status")
+        }
+
+        if (validator.isEmpty(citizenshipStatus)) {
+            errors.push("Please select your citizenship status")
+        }
+
+        if (validator.isEmpty(gender)) {
+            errors.push("Please select your gender")
+        }
+
+        if (validator.isEmpty(cellPhone)) {
+            errors.push("Please enter your cell phone number")
+        }
+
+        const errorList = errors.map(error => `<li>${error}</li>`).join('');
+        if (errors.length > 0) {
+            Swal.fire({
+                title: "Invalid Input!",
+                html: `<ul class="flex flex-col items-center justify-center" style="text-align: left;">${errorList}</ul>`, // Use HTML to create a list
+                icon: "error",
+                confirmButtonText: "Okay"
+            })
+            return;
+        }
+
+        const userDataToUpdate = {
+            firstName,
+            middleName,
+            lastName,
+            gender,
+            email,
+            maritalStatus,
+            citizenShip: citizenshipStatus,
+            cellPhone,
+        }
+        try {
+            await updateUserData(userId, userDataToUpdate);
+        } catch (e) {
+            Swal.fire({
+                title: "Server Error!",
+                html: `<div class="flex flex-col items-center justify-center" style="text-align: left;">Something went wrong with the server. Please contact support</div>`, // Use HTML to create a list
+                icon: "error",
+                confirmButtonText: "Okay"
+            })
+        }
         console.log("gender:", gender);
 
         console.log('Errors:', errors);
