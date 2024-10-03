@@ -48,12 +48,13 @@ app.get('/',
         // See the Middleware options section for more details
     }),
     (req, res) => {
+
     console.log("auth", req.auth.userId);
-    // if (!req.auth.userId) {
-    //     res.redirect('/auth/login');
-    //     // res.redirect('https://wanted-parrot-2.accounts.dev/sign-in');
-    //     return;
-    // }
+    if (!req.auth.userId) {
+        res.redirect('/auth/login');
+        // res.redirect('https://wanted-parrot-2.accounts.dev/sign-in');
+        return;
+    }
     res.render('overview', { script: 'overview.js', clerk: process.env.CLERK_FRONTEND_API, clerk_key: process.env.CLERK_PUBLISHABLE_KEY });
 });
 // Home route
@@ -63,7 +64,10 @@ app.get('/orders/RLnFFgXcgk3mY6Le3/overview',
     // See the Middleware options section for more details
     }),
     (req, res) => {
-
+    if (!req.auth.userId) {
+        res.redirect('/auth/login');
+        return;
+    }
     res.render('overview', { script: 'overview.js', clerk: process.env.CLERK_FRONTEND_API, clerk_key: process.env.CLERK_PUBLISHABLE_KEY });
 });
 
@@ -87,10 +91,10 @@ app.get('/orders/RLnFFgXcgk3mY6Le3/documents',
     // See the Middleware options section for more details
     }),
     (req, res) => {
-        // if (!req.auth.userId) {
-        //     res.redirect('/auth/login');
-        //     return;
-        // }
+        if (!req.auth.userId) {
+            res.redirect('/auth/login');
+            return;
+        }
         res.render('documents', { script: "document.js", clerk: process.env.CLERK_FRONTEND_API, clerk_key: process.env.CLERK_PUBLISHABLE_KEY });
 });
 
