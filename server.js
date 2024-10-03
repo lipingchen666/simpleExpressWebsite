@@ -54,11 +54,17 @@ app.get('/',
     //     // res.redirect('https://wanted-parrot-2.accounts.dev/sign-in');
     //     return;
     // }
-    res.render('overview');
+    res.render('overview', { script: 'overview.js', clerk: process.env.CLERK_FRONTEND_API, clerk_key: process.env.CLERK_PUBLISHABLE_KEY });
 });
 // Home route
-app.get('/orders/RLnFFgXcgk3mY6Le3/overview', (req, res) => {
-    res.render('overview', { script: 'overview.js' });
+app.get('/orders/RLnFFgXcgk3mY6Le3/overview',
+    ClerkExpressWithAuth({
+    // Add options here
+    // See the Middleware options section for more details
+    }),
+    (req, res) => {
+
+    res.render('overview', { script: 'overview.js', clerk: process.env.CLERK_FRONTEND_API, clerk_key: process.env.CLERK_PUBLISHABLE_KEY });
 });
 
 app.get('/orders/RLnFFgXcgk3mY6Le3/tasks/FEwEygDD7NDJD59x5',
@@ -72,7 +78,7 @@ app.get('/orders/RLnFFgXcgk3mY6Le3/tasks/FEwEygDD7NDJD59x5',
             return;
         }
 
-        res.render('personalInfo', { script: 'personalInfo.js' });
+        res.render('personalInfo', { script: 'personalInfo.js', clerk: process.env.CLERK_FRONTEND_API, clerk_key: process.env.CLERK_PUBLISHABLE_KEY });
 });
 
 app.get('/orders/RLnFFgXcgk3mY6Le3/documents',
@@ -85,7 +91,7 @@ app.get('/orders/RLnFFgXcgk3mY6Le3/documents',
         //     res.redirect('/auth/login');
         //     return;
         // }
-        res.render('documents', { script: "document.js" });
+        res.render('documents', { script: "document.js", clerk: process.env.CLERK_FRONTEND_API, clerk_key: process.env.CLERK_PUBLISHABLE_KEY });
 });
 
 app.get('/orders/RLnFFgXcgk3mY6Le3/tasks/',
@@ -98,7 +104,7 @@ app.get('/orders/RLnFFgXcgk3mY6Le3/tasks/',
             res.redirect('/auth/login');
             return;
         }
-        res.render('tasks', { script: "tasks.js" });
+        res.render('tasks', { script: "tasks.js", clerk: process.env.CLERK_FRONTEND_API, clerk_key: process.env.CLERK_PUBLISHABLE_KEY });
 })
 
 app.get('/orders/RLnFFgXcgk3mY6Le3/tasks/H9C5MgYWefYjyJ8dD',
@@ -111,11 +117,11 @@ app.get('/orders/RLnFFgXcgk3mY6Le3/tasks/H9C5MgYWefYjyJ8dD',
             res.redirect('/auth/login');
             return;
         }
-        res.render('vesting', { script: "vesting.js" });
+        res.render('vesting', { script: "vesting.js", clerk: process.env.CLERK_FRONTEND_API, clerk_key: process.env.CLERK_PUBLISHABLE_KEY});
 });
 
 app.get('/auth/login', (req, res) => {
-    res.render('login', { script: 'login.js', layout: 'main-empty' });
+    res.render('login', { script: 'login.js', layout: 'main-empty', clerk: process.env.CLERK_FRONTEND_API, clerk_key: process.env.CLERK_PUBLISHABLE_KEY });
 })
 
 app.patch('/users/:id', async (req, res) => {

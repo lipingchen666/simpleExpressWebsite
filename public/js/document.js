@@ -57,6 +57,7 @@ const listAllUploadedFiles = async () => {
     const response = await fetch('/api/files');
     return await response.json();
 
+
     // Add files to the FilePond instance
 }
 

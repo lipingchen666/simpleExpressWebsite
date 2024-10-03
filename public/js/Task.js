@@ -125,7 +125,7 @@ export const creatTaskComponent = ({dataId, link, imageSrc, title, timeToComplet
     const actionsDiv = document.createElement('div');
     actionsDiv.className = 'actions';
     const actionAnchor = document.createElement('a');
-    const className = completed ? "ui big basic button" : 'ui big primary labeled icon button';
+    const className = completed ? "ui big basic button pointer-events-none cursor-not-allowed text-gray-400 opacity-50" : 'ui big primary labeled icon button';
     actionAnchor.className = className;
     actionAnchor.href = link;
 
