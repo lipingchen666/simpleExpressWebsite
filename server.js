@@ -143,11 +143,6 @@ app.patch('/users/:id', async (req, res) => {
             return res.status(400).json({ error: error.message }); // Return an error if one occurs
         }
 
-        // If no rows were updated, return a 404
-        if (data.length === 0) {
-            return res.status(404).json({ message: `User with ID '${id}' not found.` });
-        }
-
         // Return the updated user data
         res.status(200).json({ message: 'User updated successfully', data });
     } catch (error) {

@@ -253,7 +253,7 @@ const ComponentHtml = `
                     <div class="ui sensitivePlaceholder input">
 
 
-                        <input type="text" inputmode="numeric" placeholder="***-**-**68" name="TbKa9YBWQriF368Sc"
+                        <input type="text" inputmode="numeric" placeholder="" name="ssn"
                                data-schema-key="ssn" class="text_input" tabindex="0" autocomplete="off" value="***-**-**68">
 
 
@@ -375,7 +375,7 @@ const ComponentHtml = `
                     <div class="ui input">
 
 
-                        <input type="text" inputmode="tel" name="NTTXst5S3uPNYRDrr" data-schema-key="homePhone"
+                        <input type="text" inputmode="tel" name="homePhone" data-schema-key="homePhone"
                                class="text_input" tabindex="0" autocomplete="off">
 
 
@@ -398,7 +398,7 @@ const ComponentHtml = `
                     <div class="ui input">
 
 
-                        <input type="text" inputmode="tel" name="NtLBqpYQ6e75qsrzY" data-schema-key="workPhone"
+                        <input type="text" inputmode="tel" name="workPhone" data-schema-key="workPhone"
                                class="text_input" tabindex="0" autocomplete="off">
 
 
@@ -421,7 +421,7 @@ const ComponentHtml = `
                     <div class="ui input">
 
 
-                        <input type="text" inputmode="tel" name="c2tuuQWFsQRsnjgof" data-schema-key="fax"
+                        <input type="text" inputmode="tel" name="fax" data-schema-key="fax"
                                class="text_input" tabindex="0" autocomplete="off">
 
 
@@ -477,7 +477,7 @@ const ComponentHtml = `
 
 
                                 <input class="prompt" type="text" autocomplete="new-password"
-                                       placeholder="Search address..." name="k7JRQpYhuoHpa5giQ"
+                                       placeholder="Search address..." name="currentAddress"
                                        data-schema-key="currentAddress">
                             </div>
                             <div class="results"></div>
@@ -527,7 +527,7 @@ const ComponentHtml = `
                         <div class="ui input">
 
 
-                            <input type="text" name="xdsRSdGtMkQQp5c46" data-schema-key="currentAddressCity"
+                            <input type="text" name="currentCity" data-schema-key="currentAddressCity"
                                    class="text_input" tabindex="0" autocomplete="new-password">
 
 
@@ -550,7 +550,7 @@ const ComponentHtml = `
                         <div class="ui input">
 
 
-                            <input type="text" name="ZZaEf29dntRmYRiJZ" data-schema-key="currentAddressCounty"
+                            <input type="text" name="currentCounty" data-schema-key="currentAddressCounty"
                                    class="text_input" tabindex="0" autocomplete="new-password">
 
 
@@ -571,7 +571,7 @@ const ComponentHtml = `
 
 
                         <div class="ui search selection dropdown">
-                            <input type="hidden" name="Zf8GsMYjEr5jygpDt" value="MD"
+                            <input type="hidden" name="currentState" value="MD"
                                    data-schema-key="currentAddressState" autocomplete="new-password">
 
 
@@ -763,7 +763,7 @@ const ComponentHtml = `
                         <div class="ui input">
 
 
-                            <input type="text" inputmode="numeric" name="BcKqhpxBoX3ADDHjJ"
+                            <input type="text" inputmode="numeric" name="currentZip"
                                    data-schema-key="currentAddressZipcode" class="text_input" tabindex="0"
                                    autocomplete="new-password">
 
@@ -933,7 +933,7 @@ const ComponentHtml = `
                                 <i class="calendar icon"></i>
 
 
-                                <input type="text" name="kxtAeSkRAquYHRzcg" data-schema-key="dateOfBirth" id="birth-date-picker"
+                                <input type="text" name="dateOfBirth" data-schema-key="dateOfBirth" id="birth-date-picker"
                                        autocomplete="new-password" inputmode="numeric">
 
                             </div>
@@ -1288,11 +1288,22 @@ export const hookUpFormSubmit = (form) => {
             const lastName = e.target.elements["lastName"].value;
             const suffix = e.target.elements["suffix"].value;
             const gender = e.target.elements["gender"].value;
-
+            const ssn = e.target.elements["ssn"].value;
             const email = e.target.elements["email"].value;
             const maritalStatus = e.target.elements["maritalStatus"].value;
             const citizenshipStatus = e.target.elements["citizenshipStatus"].value;
             const cellPhone = e.target.elements["cellPhone"].value;
+
+            const homePhone = e.target.elements["homePhone"].value;
+            const workPhone = e.target.elements["workPhone"].value;
+            const fax = e.target.elements["fax"].value;
+
+            const currentAddress = e.target.elements["currentAddress"].value;
+            const currentAddressCity = e.target.elements["currentCity"].value;
+            const currentAddressCounty = e.target.elements["currentCounty"].value;
+            const currentAddressState = e.target.elements["currentState"].value || 'MD';
+            const currentAddressZipCode = e.target.elements["currentZip"].value;
+            const dateOfBirth = e.target.elements["dateOfBirth"].value;
 
             const errors = [];
             if (validator.isEmpty(firstName)) {
@@ -1323,6 +1334,24 @@ export const hookUpFormSubmit = (form) => {
             errors.push("Please enter your cell phone number")
         }
 
+        const ssnRegex = /^(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0000)\d{4}$/;
+
+// Use validator's matches function to check if SSN matches the format
+        const testSSN1 = '123-45-6789'; // Valid
+        const testSSN2 = '666-45-6789'; // Invalid
+
+        if (validator.isEmpty(ssn) || !validator.matches(ssn, ssnRegex)) {
+            errors.push("Please enter a valid SSN");
+        }
+
+        if (validator.isEmpty(dateOfBirth)) {
+            errors.push("Please enter your date of birth");
+        }
+
+        if (validator.isEmpty(currentAddress) || validator.isEmpty(currentAddressCounty) || validator.isEmpty(currentAddressCity) || validator.isEmpty(currentAddressState) || validator.isEmpty(currentAddressZipCode)) {
+            errors.push("Please enter valid address");
+        }
+
         const errorList = errors.map(error => `<li>${error}</li>`).join('');
         if (errors.length > 0) {
             Swal.fire({
@@ -1334,6 +1363,7 @@ export const hookUpFormSubmit = (form) => {
             return;
         }
 
+        const address = currentAddress + ', ' + currentAddressCity + ', ' + currentAddressState + ' ' + currentAddressZipCode;
         const userDataToUpdate = {
             firstName,
             middleName,
@@ -1343,9 +1373,25 @@ export const hookUpFormSubmit = (form) => {
             maritalStatus,
             citizenShip: citizenshipStatus,
             cellPhone,
+            suffix,
+            homePhone,
+            workPhone,
+            fax,
+            currentAddress,
+            currentAddressCity,
+            currentAddressCounty,
+            currentAddressState,
+            dateOfBirth,
+            ssn,
+            address
         }
         try {
             await updateUserData(userId, userDataToUpdate);
+            Swal.fire({
+                title: "User Updated Successfully!",
+                icon: "success",
+                confirmButtonText: "Okay"
+            })
         } catch (e) {
             Swal.fire({
                 title: "Server Error!",
